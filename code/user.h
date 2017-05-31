@@ -1,5 +1,8 @@
 #pragma once
 #include <string>
+#include <vector>
+
+class Course;
 
 class User
 {
@@ -17,4 +20,29 @@ class User
 		std::string name;
 		std::string accountId;
 		std::string password;
+};
+
+class Student :public User
+{
+public:
+	Student();
+	~Student();
+	std::vector<Course*>& getCourse();
+	int addCourse(Course* newCourse);
+	bool decCourse(Course* course1);
+private:
+	std::vector<Course*> course;
+};
+
+class Teacher :public User
+{
+public:
+	Teacher();
+	~Teacher();
+	std::vector<Course*>& getCourse();
+	bool addCourse(const Course* newCourse);
+	bool decCourse(const Course* course1);
+	void popClass(const Course* course1);
+private:
+	std::vector<Course*> course;
 };
